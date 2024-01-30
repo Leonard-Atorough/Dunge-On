@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://luwirpykskkj"]
+[gd_scene load_steps=14 format=3 uid="uid://luwirpykskkj"]
 
 [ext_resource type="Texture2D" uid="uid://c57ki4e8ojowq" path="res://Assets/Pixel-RPG_Prototype_v003/Sprites/Prototype/Prototype_Worksheet.png" id="1_5bxuq"]
+[ext_resource type="Texture2D" uid="uid://woq8jhqggk81" path="res://Assets/Pixel-RPG_Prototype_v003/Extras/Shadow.png" id="2_1vb6w"]
 [ext_resource type="PackedScene" uid="uid://cvj1ylt5l5deg" path="res://resource_scripts/input_component.tscn" id="5_cetw1"]
 [ext_resource type="PackedScene" uid="uid://cymy8dut51fj5" path="res://resource_scripts/movement_component.tscn" id="6_15xt8"]
 
@@ -150,6 +151,9 @@ texture = ExtResource("1_5bxuq")
 hframes = 4
 vframes = 12
 frame = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="Body"]
+texture = ExtResource("2_1vb6w")
 
 [node name="InputComponent" parent="." node_paths=PackedStringArray("actor", "body", "player") instance=ExtResource("5_cetw1")]
 actor = NodePath("..")
