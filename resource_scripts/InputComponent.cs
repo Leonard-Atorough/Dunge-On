@@ -17,33 +17,21 @@ public partial class InputComponent : Node
 	[Export]
 	float friction = 500.0f;
 
-    string idleState = "idle_forward";
+    string idleState = "idle_sideways";
 
     public override void _PhysicsProcess(double delta)
     {
         var input = Input.GetVector("move_backward", "move_forward", "move_up", "move_down");
+		var mousePosition = actor.GetGlobalMousePosition();
+		var mouseDirection = mousePosition.X > actor.GlobalPosition.X;
 
-		if (input.Length() > 0)
+        body.Scale = mouseDirection ? new Vector2I(1, 1) : body.Scale = new Vector2I(-1, 1);
+
+        if (input.Length() > 0)
 		{
 			actor.Velocity = actor.Velocity.MoveToward(input * maxSpeed, (float)(acceleration * delta));
-
-			if (actor.Velocity.X != 0)
-			{
-                player.Play("walk_sideways");
-                idleState = new string("idle_sideways");
-
-                body.Scale = actor.Velocity.X > 0 ? new Vector2I(1, 1) : body.Scale = new Vector2I(-1, 1);
-            }
-			else if (actor.Velocity.Y < 0)
-			{
-				player.Play("walk_backward");
-				idleState = new string("idle_backward");
-			}
-			else
-			{
-                player.Play("walk_forward");
-                idleState = new string("idle_forward");
-            }
+            player.Play("walk_sideways");
+            idleState = new string("idle_sideways");
 		}
 		else
 		{
