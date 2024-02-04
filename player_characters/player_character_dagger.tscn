@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://luwirpykskkj"]
+[gd_scene load_steps=15 format=3 uid="uid://luwirpykskkj"]
 
 [ext_resource type="Texture2D" uid="uid://c57ki4e8ojowq" path="res://Assets/Pixel-RPG_Prototype_v003/Sprites/Prototype/Prototype_Worksheet.png" id="1_5bxuq"]
 [ext_resource type="Texture2D" uid="uid://woq8jhqggk81" path="res://Assets/Pixel-RPG_Prototype_v003/Extras/Shadow.png" id="2_1vb6w"]
 [ext_resource type="PackedScene" uid="uid://cvj1ylt5l5deg" path="res://resource_scripts/input_component.tscn" id="5_cetw1"]
+[ext_resource type="PackedScene" uid="uid://cbnu3xt5c1j5b" path="res://resource_scripts/health_component.tscn" id="5_cmvro"]
 [ext_resource type="PackedScene" uid="uid://cymy8dut51fj5" path="res://resource_scripts/movement_component.tscn" id="6_15xt8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fa4uh"]
-radius = 5.0
+radius = 4.0
 height = 14.0
 
 [sub_resource type="Animation" id="Animation_6wufq"]
@@ -160,6 +161,8 @@ player = NodePath("../AnimationPlayer")
 
 [node name="MovementComponent" parent="." node_paths=PackedStringArray("actor") instance=ExtResource("6_15xt8")]
 actor = NodePath("..")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_cmvro")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 1.0

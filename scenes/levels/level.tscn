@@ -427,8 +427,10 @@ custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_lm4q8")
 
 [node name="Level" type="Node2D"]
+metadata/_edit_lock_ = true
 
 [node name="Terrain" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="Terrain"]
 tile_set = SubResource("TileSet_32f0b")
@@ -450,19 +452,29 @@ layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
 
 [node name="Objects" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="TileMap" type="TileMap" parent="Objects"]
 tile_set = SubResource("TileSet_kb4tx")
 format = 2
 
+[node name="Traps" type="Node2D" parent="Objects"]
+metadata/_edit_lock_ = true
+
 [node name="Containers" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Items" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Enemies" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Player" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Atmospherics" type="Node2D" parent="."]
+metadata/_edit_lock_ = true

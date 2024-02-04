@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwqpbyvy6wh2a"]
+
+[ext_resource type="Script" path="res://traps/Spikes.cs" id="1_bbb6r"]
+[ext_resource type="Texture2D" uid="uid://can4opgtsnamd" path="res://Assets/2D Dungeon Asset Pack_v5.2/2D Dungeon Asset Pack_v5.2/items_animation/peaks.png" id="1_foi56"]
+[ext_resource type="PackedScene" uid="uid://b12slefdgbdyr" path="res://resource_scripts/damage_component.tscn" id="3_w8t5e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tfgwy"]
+size = Vector2(12, 11)
+
+[sub_resource type="Animation" id="Animation_7kfp3"]
+resource_name = "spike_up"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6, 0.7, 0.8, 0.9, 1, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DealDamageTimer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [-1],
+"method": &"start"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hknds"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4c61v"]
+_data = {
+"RESET": SubResource("Animation_hknds"),
+"spike_up": SubResource("Animation_7kfp3")
+}
+
+[node name="Spikes" type="Node2D" node_paths=PackedStringArray("DamageComponent")]
+script = ExtResource("1_bbb6r")
+DamageComponent = NodePath("DamageComponent")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_tfgwy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_foi56")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spike_up"
+libraries = {
+"": SubResource("AnimationLibrary_4c61v")
+}
+
+[node name="DealDamageTimer" type="Timer" parent="."]
+
+[node name="DamageComponent" parent="." instance=ExtResource("3_w8t5e")]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
