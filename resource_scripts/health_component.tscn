@@ -4,3 +4,5 @@
 
 [node name="HealthComponent" type="Node"]
 script = ExtResource("1_y41xk")
+
+[node name="IFrameTimer" type="Timer" parent="."]

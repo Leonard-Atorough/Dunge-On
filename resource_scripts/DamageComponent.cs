@@ -9,9 +9,9 @@ public partial class DamageComponent : Node
     public void DealDamage(Node2D body)
     {
         if (body == null) return;
-        if (body.HasMethod("TakeDamage"))
+        if (body.HasNode("HealthComponent"))
         {
-            body.Call("TakeDamage", DamageAmount);
+            body.GetNode<Node>("HealthComponent").Call("TakeDamage", DamageAmount);
         }
     }
 }

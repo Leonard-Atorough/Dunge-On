@@ -26,15 +26,15 @@ tracks/0/keys = {
 tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("DealDamageTimer")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(1.8),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [-1],
-"method": &"start"
+"args": [],
+"method": &"ResetTimer"
 }]
 }
 
@@ -63,9 +63,9 @@ _data = {
 script = ExtResource("1_bbb6r")
 DamageComponent = NodePath("DamageComponent")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageZone" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageZone"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_tfgwy")
 
@@ -83,5 +83,3 @@ libraries = {
 [node name="DealDamageTimer" type="Timer" parent="."]
 
 [node name="DamageComponent" parent="." instance=ExtResource("3_w8t5e")]
-
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
